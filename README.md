@@ -1,36 +1,36 @@
-# LAB — Carreiras X e Y: Valor Entregue na Prática
+# 💡 LAB — Carreiras X e Y: Valor Entregue na Prática  
+> **Versão:** 8.15.3 — Ambiente 100% local, sem TLS e sem autenticação.  
+> **Objetivo:** Demonstrar como **técnica (Carreira X)** e **liderança (Carreira Y)** se conectam por meio do **valor entregue** na observabilidade.
 
-> ⚠️ **Modo LAB (não use em produção):** segurança desativada para facilitar o estudo.
+---
 
-## O que vem
-- Elasticsearch + Kibana **8.15.3**
-- Índice: **carreiras-x-y**
-- **50.000** documentos simulados (out/2025)
-- Dashboard: **Carreiras X e Y — Valor Entregue na Prática**
+## 🧭 1. Contexto e propósito
 
-## Pré-requisitos
-- Docker + Docker Compose
-- Python 3.8+ (`pip install requests`)
+Este laboratório foi criado para ilustrar **como métricas técnicas podem ser traduzidas em valor de negócio**.
 
-## Passo a passo
+- 👨‍💻 **Carreira X (técnica)**: foca em eficiência, estabilidade, performance.  
+- 👔 **Carreira Y (gestão)**: foca em previsibilidade, custo, impacto e decisão.  
+- 🧩 **Observabilidade** é o fio que costura os dois mundos — transformando **dados em história** e **história em decisão**.
+
+Aqui, você vai gerar **50.000 documentos reais**, simulando um mês de operação de uma área de tecnologia, e visualizar os resultados em um **dashboard do Kibana** pronto.
+
+---
+
+## 🏗️ 2. Estrutura do LAB
+
+| Componente | Descrição |
+|-------------|------------|
+| **Elasticsearch 8.15.3** | Armazena e processa os dados simulados. |
+| **Kibana 8.15.3** | Interface visual para explorar, consultar e criar dashboards. |
+| **seed_valor_entregue.py** | Script Python que gera e envia 50.000 documentos simulados para o índice `carreiras-x-y`. |
+| **valor-entregue.ndjson** | Dashboard pronto para importação no Kibana. |
+| **docker-compose.yml** | Sobe todo o ambiente local em um único comando. |
+
+---
+
+## ⚙️ 3. Subindo o ambiente
+
+Dentro da pasta do projeto (`lab-carreiras-x-y/`):
+
 ```bash
 docker compose up -d
-python3 seed_valor_entregue.py
-# Abra o Kibana em http://localhost:5601
-# Importar: Stack Management → Saved Objects → Import → dashboards/valor-entregue.ndjson
-```
-> Dica: altere volume de dados usando `DOCS` e `BATCH`:
-> `DOCS=100000 BATCH=5000 python3 seed_valor_entregue.py`
-
-### O que visualizar
-- **Valor Score (média)** — métrica unificadora X + Y
-- **MTTR ao longo do tempo** — eficiência técnica
-- **Taxa de erro** — estabilidade operacional
-- **Custo de incidente (R$)** — impacto financeiro
-- **Correlação Valor x Custo** — leitura técnica ↔ negócio
-
-### Notas
-- Janela de tempo do dashboard já definida para **01/10/2025 → 31/10/2025**
-- Se nada aparece, confirme se o índice `carreiras-x-y` tem dados e ajuste o timepicker.
-
-Bom LAB! 💛
